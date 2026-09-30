@@ -15,20 +15,31 @@ if (isNaN(edad)) {
 }
 
 // Paso 4: 
-
-// 1. Definimos la función que recibe tres parámetros
 function crearPerfil(nombreUsuario, edadUsuario, ocupacionUsuario) {
-    // Verificamos con === que el nombre no esté vacío o sea nulo
     if (nombreUsuario === "" || nombreUsuario === null) {
         return "Error: El nombre no puede estar vacío.";
     }
-
-    
     return `Hola, ${nombreUsuario}. Tienes ${edadUsuario} años y eres un/a ${ocupacionUsuario}.`;
 }
 
-// 2. Llamamos a la función guardando su retorno en una variable
 const mensajePerfil = crearPerfil(nombre, edad, ocupacion);
-
-// 3. Mostramos el resultado en la consola
 console.log(mensajePerfil);
+
+// Paso 5: 
+
+// 1. Creamos un Array vacío
+const hobbies = [];
+
+// 2. Usamos un bucle 'for' para pedir 3 hobbies y agregarlos con .push()
+for (let i = 1; i <= 3; i++) {
+    const hobby = prompt(`Ingresa tu hobby #${i}:`);
+    if (hobby) {
+        hobbies.push(hobby);
+    }
+}
+
+// 3. Recorremos el Array con el método forEach() y mostramos cada uno en consola
+console.log("Lista de Hobbies:");
+hobbies.forEach((hobby, indice) => {
+    console.log(`${indice + 1}. ${hobby}`);
+});
