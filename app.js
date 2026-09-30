@@ -25,12 +25,9 @@ function crearPerfil(nombreUsuario, edadUsuario, ocupacionUsuario) {
 const mensajePerfil = crearPerfil(nombre, edad, ocupacion);
 console.log(mensajePerfil);
 
-// Paso 5: 
-
-// 1. Creamos un Array vacío
+// Paso 5: Arrays y Bucles
 const hobbies = [];
 
-// 2. Usamos un bucle 'for' para pedir 3 hobbies y agregarlos con .push()
 for (let i = 1; i <= 3; i++) {
     const hobby = prompt(`Ingresa tu hobby #${i}:`);
     if (hobby) {
@@ -38,8 +35,34 @@ for (let i = 1; i <= 3; i++) {
     }
 }
 
-// 3. Recorremos el Array con el método forEach() y mostramos cada uno en consola
-console.log("Lista de Hobbies:");
-hobbies.forEach((hobby, indice) => {
-    console.log(`${indice + 1}. ${hobby}`);
-});
+// Paso 6: Objetos y Renderizado en el DOM
+
+// 1. Agrupamos toda la información en un objeto
+const perfilUsuario = {
+    nombre: nombre,
+    edad: edad,
+    ocupacion: ocupacion,
+    hobbies: hobbies
+};
+
+// 2. Seleccionamos el elemento objetivo en el HTML por su ID
+const contenedorPerfil = document.getElementById("perfil-container");
+
+// 3. Convertimos la lista de hobbies a etiquetas <li> de HTML
+const listaHobbiesHTML = perfilUsuario.hobbies
+    .map(hobby => `<li>${hobby}</li>`)
+    .join("");
+
+// 4. Inyectamos la estructura visual dentro del elemento usando innerHTML
+contenedorPerfil.innerHTML = `
+    <div style="border: 2px solid #4A90E2; padding: 20px; border-radius: 8px; max-width: 400px; font-family: sans-serif; background-color: #f9f9f9; margin-top: 15px;">
+        <h2 style="color: #333; margin-top: 0;">Perfil del Usuario</h2>
+        <p><strong>Nombre:</strong> ${perfilUsuario.nombre}</p>
+        <p><strong>Edad:</strong> ${perfilUsuario.edad} años</p>
+        <p><strong>Ocupación:</strong> ${perfilUsuario.ocupacion}</p>
+        <h3 style="color: #555;">Hobbies:</h3>
+        <ul>
+            ${listaHobbiesHTML}
+        </ul>
+    </div>
+`;
